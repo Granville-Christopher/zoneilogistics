@@ -2,17 +2,10 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import cookieParser from 'cookie-parser';
-import express, {
-  Express,
-  NextFunction,
-  Request,
-  Response,
-} from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import helmet from 'helmet';
 import jwt from 'jsonwebtoken';
 import { AppModule } from './app.module';
-
-let cachedServer: Express | undefined;
 
 const PUBLIC_ADMIN_PAGES = new Set([
   '/admin/login.html',
@@ -59,16 +52,14 @@ function protectAdminPages(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export async function createApp(): Promise<Express> {
-  if (cachedServer) {
-    return cachedServer;
-  }
-
+async function bootstrap() {
   const expressApp = express();
-  expressApp.use(helmet({
-    contentSecurityPolicy: false,
-    crossOriginEmbedderPolicy: false,
-  }));
+  expressApp.use(
+    helmet({
+      contentSecurityPolicy: false,
+      crossOriginEmbedderPolicy: false,
+    }),
+  );
   expressApp.use(cookieParser());
   expressApp.use(protectAdminPages);
 
@@ -89,29 +80,12 @@ export async function createApp(): Promise<Express> {
     origin: true,
     credentials: true,
   });
-  await app.init();
 
-  cachedServer = expressApp;
-  return expressApp;
-}
-
-async function bootstrap() {
-  const server = await createApp();
   const port = process.env.PORT ?? 3000;
-  server.listen(port, () => {
-    console.log(
-      `Zonei International Logistics running on http://localhost:${port}`,
-    );
-  });
+  await app.listen(port);
+  console.log(
+    `Zonei International Logistics running on http://localhost:${port}`,
+  );
 }
 
-// Local / traditional hosting
-if (!process.env.VERCEL) {
-  void bootstrap();
-}
-
-// Vercel serverless handler
-export default async function handler(req: Request, res: Response) {
-  const server = await createApp();
-  return server(req, res);
-}
+void bootstrap();
