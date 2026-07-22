@@ -103,7 +103,11 @@
             <label>City of Departure<input type="text" name="cityOfDeparture" required /></label>
             <label>Date of Departure<input type="date" name="dateOfDeparture" required /></label>
             <label>Estimated Date of Arrival<input type="date" name="estimatedDateOfArrival" required /></label>
-            <label>Current Location<input type="text" name="currentLocation" required placeholder="Afghanistan" /></label>
+            <label>Current Location
+              <select name="currentLocation" id="current-location" required>
+                <option value="">Select country</option>
+              </select>
+            </label>
             <label>Destination<input type="text" name="destination" required /></label>
             <label>Delivery Status<input type="text" name="deliveryStatus" required placeholder="Package in transit" /></label>
             <label>Status Level
@@ -130,6 +134,7 @@
       </form>
     </div>
 
+    <script src="/js/countries.js"></script>
     <script src="/js/admin.js"></script>
   </body>
 </html>

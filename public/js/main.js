@@ -75,11 +75,66 @@
     revealEls.forEach((el) => el.classList.add("is-visible"));
   }
 
-  const modeImages = {
-    plane: "/assets/img/plane.jpg",
-    ship: "/assets/img/ship.jpg",
-    train: "/assets/img/ttt.png",
-    truck: "/assets/img/b.png",
+  const findCountry = (locationName) => {
+    if (!locationName || !Array.isArray(window.WORLD_COUNTRIES)) return null;
+    const needle = String(locationName).trim().toLowerCase();
+    return (
+      window.WORLD_COUNTRIES.find(
+        (country) => country.name.toLowerCase() === needle,
+      ) ||
+      window.WORLD_COUNTRIES.find((country) =>
+        needle.includes(country.name.toLowerCase()),
+      ) ||
+      null
+    );
+  };
+
+  const renderLocationMap = (locationName) => {
+    const mapEl = document.querySelector("#package-map");
+    const note = document.querySelector("#package-map-note");
+    if (!mapEl || typeof window.L === "undefined") return;
+
+    const country = findCountry(locationName);
+    if (!country) {
+      if (note) note.hidden = false;
+      mapEl.innerHTML = "";
+      return;
+    }
+    if (note) note.hidden = true;
+
+    const map = window.L.map(mapEl, {
+      zoomControl: true,
+      scrollWheelZoom: false,
+      attributionControl: true,
+    }).setView([country.lat, country.lng], 5);
+
+    window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    const circle = window.L.circle([country.lat, country.lng], {
+      radius: 180000,
+      color: "#dc2626",
+      weight: 2,
+      fillColor: "#ef4444",
+      fillOpacity: 0.18,
+    }).addTo(map);
+
+    const markerIcon = window.L.divIcon({
+      className: "location-marker",
+      html: '<div class="location-marker__pulse" aria-hidden="true"></div>',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14],
+    });
+
+    window.L.marker([country.lat, country.lng], { icon: markerIcon })
+      .addTo(map)
+      .bindPopup(`Current location: <strong>${country.name}</strong>`);
+
+    circle.bindTooltip(country.name, { permanent: false, direction: "top" });
+
+    window.setTimeout(() => map.invalidateSize(), 80);
   };
 
   const formatDate = (iso) => {
@@ -219,11 +274,13 @@
           setText("#pkg-origin", result.origin);
           setText("#pkg-destination-route", result.destination);
 
-          const modeImg = document.querySelector("#pkg-mode-img");
-          if (modeImg) {
-            modeImg.src = modeImages[result.mode] || modeImages.plane;
-            modeImg.alt = `${result.mode || "freight"} freight`;
+          const mapLabel = document.querySelector("#pkg-map-label");
+          if (mapLabel) {
+            mapLabel.textContent = result.currentLocation
+              ? `Current: ${result.currentLocation}`
+              : "Location unavailable";
           }
+          renderLocationMap(result.currentLocation);
 
           const timeline = document.querySelector("#pkg-timeline");
           if (timeline && Array.isArray(result.timeline)) {

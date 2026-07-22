@@ -8,6 +8,25 @@
     !isAuthPage &&
     (path.endsWith(".html") || path.endsWith("/admin/") || path.endsWith("/admin"));
 
+  const populateCountrySelect = (selectedValue = "") => {
+    const select = document.querySelector("#current-location");
+    if (!select || !Array.isArray(window.WORLD_COUNTRIES)) return;
+    const current = selectedValue || select.value || "";
+    const options = window.WORLD_COUNTRIES.map(
+      (country) => `<option value="${country.name}">${country.name}</option>`,
+    );
+    if (
+      current &&
+      !window.WORLD_COUNTRIES.some((country) => country.name === current)
+    ) {
+      options.unshift(
+        `<option value="${current}">${current} (custom)</option>`,
+      );
+    }
+    select.innerHTML = `<option value="">Select country</option>${options.join("")}`;
+    if (current) select.value = current;
+  };
+
   const setText = (id, value) => {
     const el = document.querySelector(id);
     if (el) el.textContent = value ?? "—";
@@ -235,6 +254,7 @@
             field.value = value == null ? "" : String(value);
           }
         });
+        populateCountrySelect(shipment.currentLocation || "");
       } catch (error) {
         if (status) {
           status.className = "form-status is-error";
@@ -391,6 +411,7 @@
   };
 
   const boot = async () => {
+    populateCountrySelect();
     bindLogin();
     bindSignup();
     bindSidebar();

@@ -150,18 +150,19 @@
 }
 
 .admin-table {
-  width: 100%;
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
-  min-width: 900px;
 }
 
 .admin-table th,
 .admin-table td {
   text-align: left;
-  padding: 0.9rem 0.75rem;
+  padding: 0.95rem 1.15rem;
   border-bottom: 1px solid rgba(10, 31, 68, 0.08);
-  vertical-align: top;
+  vertical-align: middle;
   font-size: 0.95rem;
+  white-space: nowrap;
 }
 
 .admin-table th {
@@ -169,6 +170,7 @@
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  padding-inline: 1.15rem;
 }
 
 .badge {
