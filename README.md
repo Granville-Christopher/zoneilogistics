@@ -17,6 +17,16 @@ Rebrand of [zoneiintl.com](https://zoneiintl.com) — NestJS courier & freight s
 9. `/admin/edit.html?id=` — Edit shipment
 10. `/admin/receipt.html?id=` — View / print receipt
 
+## Deploy on Vercel
+
+1. Import the GitHub repo in Vercel
+2. Set env var: `MONGODB_URI` (same Atlas string as local `.env`)
+3. In MongoDB Atlas → **Network Access**, allow `0.0.0.0/0` (Vercel IPs change)
+4. Build uses `npm run vercel-build` (Nest compile) + static `public/` pages
+5. `/api/*` routes go to the Nest serverless function
+
+Local still uses `npm run start:dev`.
+
 ## Database (MongoDB)
 
 Set `MONGODB_URI` in `.env`:

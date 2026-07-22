@@ -21,7 +21,7 @@ import { ShipmentModule } from './shipment/shipment.module';
       }),
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
+      rootPath: join(process.cwd(), 'public'),
       exclude: ['/api/(.*)'],
     }),
     QuoteModule,
