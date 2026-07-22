@@ -76,7 +76,7 @@
   }
 
   const modeImages = {
-    plane: "/assets/img/p.webp",
+    plane: "/assets/img/plane.jpg",
     ship: "/assets/img/ship.jpg",
     train: "/assets/img/ttt.png",
     truck: "/assets/img/b.png",

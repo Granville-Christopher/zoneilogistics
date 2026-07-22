@@ -1346,6 +1346,7 @@ code {
   width: 100%;
   height: 180px;
   object-fit: cover;
+  background: #d7e3f7;
 }
 
 .service-tile div {
