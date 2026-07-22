@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login — Zonei International Logistics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="icon" href="/assets/a.jpg" type="image/jpeg" />
+  </head>
+  <body class="auth-body">
+    <main class="auth-shell">
+      <section class="auth-card">
+        <div class="auth-brand">
+          <img src="/assets/a.jpg" alt="Zonei International Logistics" width="140" height="48" />
+          <h1>Admin sign in</h1>
+          <p>Secure access to the Zonei International Logistics dashboard.</p>
+        </div>
+
+        <form class="auth-form" id="login-form" novalidate>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="username" required maxlength="120" />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" autocomplete="current-password" required minlength="8" maxlength="128" />
+          </label>
+          <p class="form-status" id="form-status" role="status"></p>
+          <button class="btn btn--primary auth-submit" type="submit">Sign in</button>
+        </form>
+
+        <p class="auth-switch">
+          Need an account?
+          <a href="/admin/signup.html">Create admin account</a>
+        </p>
+      </section>
+    </main>
+    <script src="/js/admin.js"></script>
+  </body>
+</html>

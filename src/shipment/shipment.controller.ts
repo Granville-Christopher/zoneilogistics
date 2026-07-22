@@ -7,6 +7,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { Public } from '../auth/decorators/public.decorator';
 import { CreateShipmentDto } from './dto/create-shipment.dto';
 import { UpdateShipmentDto } from './dto/update-shipment.dto';
 import { ShipmentService } from './shipment.service';
@@ -42,6 +43,7 @@ export class ShipmentController {
     return this.shipmentService.remove(id);
   }
 
+  @Public()
   @Get('track/:code')
   async track(@Param('code') code: string) {
     const shipment = await this.shipmentService.findByTrackingCode(code);

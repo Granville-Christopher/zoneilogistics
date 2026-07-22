@@ -1,10 +1,183 @@
 (() => {
   const params = new URLSearchParams(window.location.search);
   const path = window.location.pathname;
+  const isAuthPage =
+    path.endsWith("/login.html") || path.endsWith("/signup.html");
+  const isProtectedAdmin =
+    path.includes("/admin/") &&
+    !isAuthPage &&
+    (path.endsWith(".html") || path.endsWith("/admin/") || path.endsWith("/admin"));
 
   const setText = (id, value) => {
     const el = document.querySelector(id);
     if (el) el.textContent = value ?? "—";
+  };
+
+  const apiFetch = (url, options = {}) =>
+    fetch(url, {
+      ...options,
+      credentials: "include",
+      headers: {
+        ...(options.body ? { "Content-Type": "application/json" } : {}),
+        ...(options.headers || {}),
+      },
+    });
+
+  const readError = async (response) => {
+    try {
+      const result = await response.json();
+      if (Array.isArray(result.message)) return result.message.join(" ");
+      return result.message || "Request failed.";
+    } catch {
+      return "Request failed.";
+    }
+  };
+
+  const redirectToLogin = () => {
+    window.location.replace("/admin/login.html");
+  };
+
+  const requireAuth = async () => {
+    if (!isProtectedAdmin) return true;
+    try {
+      const response = await apiFetch("/api/auth/me");
+      if (!response.ok) {
+        redirectToLogin();
+        return false;
+      }
+      return true;
+    } catch {
+      redirectToLogin();
+      return false;
+    }
+  };
+
+  const bindSidebar = () => {
+    const sidebar = document.querySelector("#admin-sidebar");
+    const backdrop = document.querySelector("#admin-sidebar-backdrop");
+    const openBtn = document.querySelector("#admin-menu-toggle");
+    const closeBtn = document.querySelector("#admin-sidebar-close");
+    if (!sidebar || !openBtn) return;
+
+    const setOpen = (open) => {
+      document.body.classList.toggle("sidebar-open", open);
+      openBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      if (backdrop) backdrop.hidden = !open;
+      document.body.style.overflow = open ? "hidden" : "";
+    };
+
+    openBtn.addEventListener("click", () => setOpen(true));
+    closeBtn?.addEventListener("click", () => setOpen(false));
+    backdrop?.addEventListener("click", () => setOpen(false));
+    sidebar.querySelectorAll("nav a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+    });
+  };
+
+  const bindLogout = () => {
+    const btn = document.querySelector("#admin-logout");
+    if (!btn) return;
+    btn.addEventListener("click", async () => {
+      try {
+        await apiFetch("/api/auth/logout", { method: "POST" });
+      } catch {
+        /* ignore */
+      }
+      redirectToLogin();
+    });
+  };
+
+  const bindLogin = () => {
+    const form = document.querySelector("#login-form");
+    if (!form) return;
+    const status = document.querySelector("#form-status");
+
+    apiFetch("/api/auth/me")
+      .then((res) => {
+        if (res.ok) window.location.replace("/admin/index.html");
+      })
+      .catch(() => {});
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (status) {
+        status.className = "form-status";
+        status.textContent = "Signing in…";
+      }
+      const data = new FormData(form);
+      try {
+        const response = await apiFetch("/api/auth/login", {
+          method: "POST",
+          body: JSON.stringify({
+            email: String(data.get("email") || "").trim(),
+            password: String(data.get("password") || ""),
+          }),
+        });
+        if (!response.ok) throw new Error(await readError(response));
+        window.location.href = "/admin/index.html";
+      } catch (error) {
+        if (status) {
+          status.className = "form-status is-error";
+          status.textContent =
+            error instanceof Error ? error.message : "Sign in failed.";
+        }
+      }
+    });
+  };
+
+  const bindSignup = () => {
+    const form = document.querySelector("#signup-form");
+    if (!form) return;
+    const status = document.querySelector("#form-status");
+    const inviteField = document.querySelector("#invite-field");
+    const inviteInput = form.elements.namedItem("inviteCode");
+
+    apiFetch("/api/auth/status")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.inviteRequired && inviteField) {
+          inviteField.classList.remove("is-hidden");
+          if (inviteInput && "required" in inviteInput) {
+            inviteInput.required = true;
+          }
+        }
+      })
+      .catch(() => {});
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (status) {
+        status.className = "form-status";
+        status.textContent = "Creating account…";
+      }
+      const data = new FormData(form);
+      const payload = {
+        name: String(data.get("name") || "").trim(),
+        email: String(data.get("email") || "").trim(),
+        password: String(data.get("password") || ""),
+      };
+      const invite = String(data.get("inviteCode") || "").trim();
+      if (invite) payload.inviteCode = invite;
+
+      try {
+        const response = await apiFetch("/api/auth/signup", {
+          method: "POST",
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) throw new Error(await readError(response));
+        window.location.href = "/admin/index.html";
+      } catch (error) {
+        if (status) {
+          status.className = "form-status is-error";
+          status.textContent =
+            error instanceof Error ? error.message : "Signup failed.";
+        }
+      }
+    });
   };
 
   const toDateInput = (value) => {
@@ -44,12 +217,11 @@
       }
 
       try {
-        const shipment = await fetch(`/api/shipments/${encodeURIComponent(id)}`).then(
-          (res) => {
-            if (!res.ok) throw new Error("Shipment not found.");
-            return res.json();
-          },
+        const response = await apiFetch(
+          `/api/shipments/${encodeURIComponent(id)}`,
         );
+        if (!response.ok) throw new Error(await readError(response));
+        const shipment = await response.json();
 
         document.querySelector("#shipment-id").value = shipment.id;
         setText("#edit-subtitle", `Editing ${shipment.trackingCode}`);
@@ -88,9 +260,8 @@
       const method = isEdit && shipmentId ? "PUT" : "POST";
 
       try {
-        const response = await fetch(url, {
+        const response = await apiFetch(url, {
           method,
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
         const result = await response.json();
@@ -128,7 +299,9 @@
     const load = async () => {
       body.innerHTML = `<tr><td colspan="10">Loading shipments…</td></tr>`;
       try {
-        const shipments = await fetch("/api/shipments").then((res) => res.json());
+        const response = await apiFetch("/api/shipments");
+        if (!response.ok) throw new Error(await readError(response));
+        const shipments = await response.json();
         if (!Array.isArray(shipments) || shipments.length === 0) {
           body.innerHTML = `<tr><td colspan="10">No shipments yet. Create one.</td></tr>`;
           return;
@@ -163,9 +336,10 @@
       if (!id) return;
       if (!window.confirm("Delete this shipment?")) return;
       try {
-        const response = await fetch(`/api/shipments/${encodeURIComponent(id)}`, {
-          method: "DELETE",
-        });
+        const response = await apiFetch(
+          `/api/shipments/${encodeURIComponent(id)}`,
+          { method: "DELETE" },
+        );
         if (!response.ok) throw new Error("Delete failed");
         await load();
       } catch {
@@ -187,12 +361,11 @@
     if (!id) return;
 
     try {
-      const shipment = await fetch(`/api/shipments/${encodeURIComponent(id)}`).then(
-        (res) => {
-          if (!res.ok) throw new Error("Not found");
-          return res.json();
-        },
+      const response = await apiFetch(
+        `/api/shipments/${encodeURIComponent(id)}`,
       );
+      if (!response.ok) throw new Error("Not found");
+      const shipment = await response.json();
 
       setText("#r-code", shipment.trackingCode);
       setText("#r-sender-name", shipment.senderName);
@@ -217,7 +390,19 @@
     }
   };
 
-  bindDashboard();
-  bindShipmentForm();
-  bindReceipt();
+  const boot = async () => {
+    bindLogin();
+    bindSignup();
+    bindSidebar();
+    bindLogout();
+
+    const ok = await requireAuth();
+    if (!ok) return;
+
+    bindDashboard();
+    bindShipmentForm();
+    bindReceipt();
+  };
+
+  boot();
 })();

@@ -12,15 +12,33 @@
     <link rel="icon" href="/assets/a.jpg" type="image/jpeg" />
   </head>
   <body class="admin-body">
-    <aside class="admin-sidebar">
-      <a class="admin-brand" href="/admin/index.html">
-        <img src="/assets/a.jpg" alt="" width="120" height="40" />
-        <span>Zonei International Logistics</span>
-      </a>
+    <button
+      class="admin-menu-toggle"
+      id="admin-menu-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-controls="admin-sidebar"
+      aria-expanded="false"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <div class="admin-sidebar-backdrop" id="admin-sidebar-backdrop" hidden></div>
+
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar-head">
+        <a class="admin-brand" href="/admin/index.html">
+          <img src="/assets/a.jpg" alt="" width="120" height="40" />
+          <span>Zonei International Logistics</span>
+        </a>
+        <button class="admin-sidebar-close" id="admin-sidebar-close" type="button" aria-label="Close menu">
+          ×
+        </button>
+      </div>
       <nav>
         <a href="/admin/index.html">Dashboard</a>
         <a href="/admin/new.html" aria-current="page">New Shipment</a>
         <a href="/index.html">View Website</a>
+        <button class="admin-logout" id="admin-logout" type="button">Sign out</button>
       </nav>
     </aside>
 

@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Public } from '../auth/decorators/public.decorator';
 import { CreateQuoteDto } from './dto/create-quote.dto';
 import { QuoteService } from './quote.service';
 
@@ -6,6 +7,7 @@ import { QuoteService } from './quote.service';
 export class QuoteController {
   constructor(private readonly quoteService: QuoteService) {}
 
+  @Public()
   @Post()
   create(@Body() dto: CreateQuoteDto) {
     const quote = this.quoteService.create(dto);
