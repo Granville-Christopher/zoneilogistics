@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Package Status — Zonei International Logistics</title>
+    <meta name="description" content="View your Zonei International Logistics tracked package status and shipment details." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" href="/assets/a.jpg" type="image/jpeg" />
+  </head>
+  <body>
+    <div class="preloader" id="preloader" aria-live="polite" aria-busy="true">
+      <div class="preloader__inner">
+        <div class="preloader__spinner" aria-hidden="true"></div>
+        <img class="preloader__logo" src="/assets/a.jpg" alt="Zonei International Logistics" width="160" height="64" />
+      </div>
+    </div>
+
+    <header class="site-header site-header--solid" id="top">
+      <a class="brand" href="/index.html" aria-label="Zonei International Logistics home">
+        <img class="brand__logo" src="/assets/a.jpg" alt="Zonei International Logistics" width="168" height="52" />
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/services.html">Services</a>
+        <a href="/track.html" aria-current="page">Track Package</a>
+        <a href="/contact.html" class="nav__cta">Contact</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <main>
+      <section class="page-hero page-hero--media">
+        <img class="page-hero__bg" src="/assets/img/tracker.jpg" alt="" />
+        <div class="page-hero__veil"></div>
+        <div class="page-hero__content">
+          <p class="page-hero__eyebrow">Shipment details</p>
+          <h1>Your package</h1>
+          <p id="package-subtitle">Loading tracking information…</p>
+        </div>
+      </section>
+
+      <section class="section package-section">
+        <div id="package-loading" class="package-loading">Looking up your shipment…</div>
+
+        <div id="package-error" class="package-error" hidden>
+          <h2>Shipment not found</h2>
+          <p id="package-error-msg">We could not find that tracking code.</p>
+          <a class="btn btn--primary" href="/track.html">Try another code</a>
+        </div>
+
+        <div id="package-view" class="package-view" hidden>
+          <div class="package-summary">
+            <div class="package-summary__status">
+              <span class="status-pill" id="pkg-status-level">Ordered</span>
+              <p class="package-code">Tracking <strong id="pkg-code">—</strong></p>
+              <p class="package-delivery" id="pkg-delivery-status">—</p>
+            </div>
+            <div class="package-summary__meta">
+              <div>
+                <span>Estimated arrival</span>
+                <strong id="pkg-eta">—</strong>
+              </div>
+              <div>
+                <span>Current location</span>
+                <strong id="pkg-current">—</strong>
+              </div>
+              <div>
+                <span>Amount paid</span>
+                <strong id="pkg-amount">—</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-grid">
+            <article class="package-panel">
+              <h2>Sender Information</h2>
+              <dl class="detail-list">
+                <div><dt>Name</dt><dd id="pkg-sender-name">—</dd></div>
+                <div><dt>Address</dt><dd id="pkg-sender-address">—</dd></div>
+                <div><dt>Email</dt><dd id="pkg-sender-email">—</dd></div>
+              </dl>
+            </article>
+
+            <article class="package-panel">
+              <h2>Receiver Information</h2>
+              <dl class="detail-list">
+                <div><dt>Name</dt><dd id="pkg-receiver-name">—</dd></div>
+                <div><dt>Address</dt><dd id="pkg-receiver-address">—</dd></div>
+                <div><dt>Email</dt><dd id="pkg-receiver-email">—</dd></div>
+              </dl>
+            </article>
+
+            <article class="package-panel">
+              <h2>Parcel Description</h2>
+              <dl class="detail-list">
+                <div><dt>Parcel Details</dt><dd id="pkg-parcel">—</dd></div>
+                <div><dt>Weight</dt><dd id="pkg-weight">—</dd></div>
+                <div><dt>Destination</dt><dd id="pkg-destination">—</dd></div>
+              </dl>
+            </article>
+
+            <article class="package-panel">
+              <h2>Shipment History</h2>
+              <dl class="detail-list">
+                <div><dt>City of Departure</dt><dd id="pkg-departure-city">—</dd></div>
+                <div><dt>Date of Departure</dt><dd id="pkg-departure-date">—</dd></div>
+                <div><dt>Estimated Date of Arrival</dt><dd id="pkg-eta-full">—</dd></div>
+                <div><dt>Current Location</dt><dd id="pkg-current-full">—</dd></div>
+                <div><dt>Delivery Status</dt><dd id="pkg-delivery-full">—</dd></div>
+                <div><dt>Status Level</dt><dd id="pkg-level-full">—</dd></div>
+                <div><dt>History Notes</dt><dd id="pkg-history-notes">—</dd></div>
+              </dl>
+            </article>
+          </div>
+
+          <div class="package-grid" style="margin-top: 1.25rem">
+            <article class="package-panel">
+              <h2>Route</h2>
+              <div class="route-visual">
+                <div>
+                  <span>From</span>
+                  <strong id="pkg-origin">—</strong>
+                </div>
+                <div class="route-visual__line" aria-hidden="true"></div>
+                <div>
+                  <span>To</span>
+                  <strong id="pkg-destination-route">—</strong>
+                </div>
+              </div>
+              <div class="mode-shot">
+                <img id="pkg-mode-img" src="/assets/img/p.webp" alt="" />
+              </div>
+            </article>
+
+            <article class="package-panel">
+              <h2>Tracking timeline</h2>
+              <ol class="timeline" id="pkg-timeline"></ol>
+            </article>
+          </div>
+
+          <div class="package-actions">
+            <a class="btn btn--primary" href="/track.html">Track another package</a>
+            <a class="btn btn--ghost-dark" href="/contact.html">Need help? Contact us</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__brand">
+        <img class="footer__logo" src="/assets/a.jpg" alt="Zonei International Logistics" width="148" height="48" />
+        <div>
+          <strong>Zonei International Logistics</strong>
+          <p>International &amp; local courier. Plane · Ship · Train · Truck.</p>
+        </div>
+      </div>
+      <div class="footer__meta">
+        <p>379 Hudson St, New York, NY 10018 · info@zoneiintl.com</p>
+        <p>&copy; <span id="year"></span> Zonei International Logistics. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+  </body>
+</html>

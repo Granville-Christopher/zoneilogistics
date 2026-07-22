@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard — Zonei International Logistics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="icon" href="/assets/a.jpg" type="image/jpeg" />
+  </head>
+  <body class="admin-body">
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="/admin/index.html">
+        <img src="/assets/a.jpg" alt="" width="120" height="40" />
+        <span>Zonei International Logistics</span>
+      </a>
+      <nav>
+        <a href="/admin/index.html" aria-current="page">Dashboard</a>
+        <a href="/admin/new.html">New Shipment</a>
+        <a href="/index.html">View Website</a>
+      </nav>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-top">
+        <div>
+          <h1>Shipments dashboard</h1>
+          <p>Manage packages, edit details, view receipts, and delete records.</p>
+        </div>
+        <a class="btn btn--primary" href="/admin/new.html">+ New shipment</a>
+      </header>
+
+      <section class="admin-card">
+        <div class="table-wrap">
+          <table class="admin-table" id="shipments-table">
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Tracking Id</th>
+                <th>Destination</th>
+                <th>Receiver Email</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>status</th>
+                <th>Edit</th>
+                <th>Receipt</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody id="shipments-body">
+              <tr><td colspan="10">Loading shipments…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <script src="/js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shipment Receipt — Zonei International Logistics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="icon" href="/assets/a.jpg" type="image/jpeg" />
+  </head>
+  <body class="admin-body receipt-body">
+    <div class="receipt-toolbar no-print">
+      <a class="btn btn--ghost-dark admin-back" href="/admin/index.html">Back</a>
+      <button class="btn btn--primary" type="button" id="print-receipt">Print receipt</button>
+    </div>
+
+    <article class="receipt" id="receipt">
+      <header class="receipt__header">
+        <img src="/assets/a.jpg" alt="Zonei International Logistics" width="140" height="48" />
+        <div>
+          <h1>Shipment Receipt</h1>
+          <p>Zonei International Logistics</p>
+        </div>
+      </header>
+      <p class="receipt__code">Tracking: <strong id="r-code">—</strong></p>
+
+      <section>
+        <h2>Sender Information</h2>
+        <p><strong>Name:</strong> <span id="r-sender-name">—</span></p>
+        <p><strong>Address:</strong> <span id="r-sender-address">—</span></p>
+        <p><strong>Email:</strong> <span id="r-sender-email">—</span></p>
+      </section>
+
+      <section>
+        <h2>Receiver Information</h2>
+        <p><strong>Name:</strong> <span id="r-receiver-name">—</span></p>
+        <p><strong>Address:</strong> <span id="r-receiver-address">—</span></p>
+        <p><strong>Email:</strong> <span id="r-receiver-email">—</span></p>
+      </section>
+
+      <section>
+        <h2>Parcel Description</h2>
+        <p><strong>Parcel Details:</strong> <span id="r-parcel">—</span></p>
+      </section>
+
+      <section>
+        <h2>Shipment History</h2>
+        <p><strong>Weight:</strong> <span id="r-weight">—</span></p>
+        <p><strong>City of Departure:</strong> <span id="r-city">—</span></p>
+        <p><strong>Date of Departure:</strong> <span id="r-depart">—</span></p>
+        <p><strong>Estimated Date of Arrival:</strong> <span id="r-eta">—</span></p>
+        <p><strong>Current Location:</strong> <span id="r-location">—</span></p>
+        <p><strong>Delivery Status:</strong> <span id="r-status">—</span></p>
+        <p><strong>Status Level:</strong> <span id="r-level">—</span></p>
+        <p><strong>Amount Paid:</strong> <span id="r-amount">—</span></p>
+        <p><strong>Destination:</strong> <span id="r-destination">—</span></p>
+        <p><strong>History Notes:</strong> <span id="r-history">—</span></p>
+      </section>
+
+      <footer class="receipt__footer">
+        <p>379 Hudson St, New York, NY 10018 · info@zoneiintl.com</p>
+      </footer>
+    </article>
+
+    <script src="/js/admin.js"></script>
+  </body>
+</html>

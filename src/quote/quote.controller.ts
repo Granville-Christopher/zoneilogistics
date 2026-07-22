@@ -1,0 +1,24 @@
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { CreateQuoteDto } from './dto/create-quote.dto';
+import { QuoteService } from './quote.service';
+
+@Controller('api/quotes')
+export class QuoteController {
+  constructor(private readonly quoteService: QuoteService) {}
+
+  @Post()
+  create(@Body() dto: CreateQuoteDto) {
+    const quote = this.quoteService.create(dto);
+    return {
+      success: true,
+      message:
+        'Quote request received. A Zonei International Logistics specialist will contact you shortly.',
+      quote,
+    };
+  }
+
+  @Get()
+  findAll() {
+    return this.quoteService.findAll();
+  }
+}

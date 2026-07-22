@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Shipment — Zonei International Logistics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="icon" href="/assets/a.jpg" type="image/jpeg" />
+  </head>
+  <body class="admin-body">
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="/admin/index.html">
+        <img src="/assets/a.jpg" alt="" width="120" height="40" />
+        <span>Zonei International Logistics</span>
+      </a>
+      <nav>
+        <a href="/admin/index.html">Dashboard</a>
+        <a href="/admin/new.html">New Shipment</a>
+        <a href="/index.html">View Website</a>
+      </nav>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-top">
+        <div>
+          <h1>Edit shipment</h1>
+          <p id="edit-subtitle">Update package details.</p>
+        </div>
+        <a class="btn btn--ghost-dark admin-back" href="/admin/index.html">Back to dashboard</a>
+      </header>
+
+      <form class="admin-form admin-card" id="shipment-form" data-mode="edit" novalidate>
+        <input type="hidden" name="id" id="shipment-id" />
+
+        <fieldset>
+          <legend>Tracking</legend>
+          <div class="admin-form-grid">
+            <label>Tracking code
+              <input type="text" name="trackingCode" id="tracking-code" readonly tabindex="-1" aria-readonly="true" />
+            </label>
+            <label>Freight mode
+              <select name="mode">
+                <option value="plane">Plane</option>
+                <option value="ship">Ship</option>
+                <option value="train">Train</option>
+                <option value="truck">Truck</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Sender Information</legend>
+          <div class="admin-form-grid">
+            <label>Name<input type="text" name="senderName" required /></label>
+            <label>Email<input type="email" name="senderEmail" required /></label>
+            <label class="full">Address<input type="text" name="senderAddress" required /></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Receiver Information</legend>
+          <div class="admin-form-grid">
+            <label>Name<input type="text" name="receiverName" required /></label>
+            <label>Email<input type="email" name="receiverEmail" required /></label>
+            <label class="full">Address<input type="text" name="receiverAddress" required /></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Parcel Description</legend>
+          <label class="full">Parcel Details
+            <textarea name="parcelDetails" rows="3" required></textarea>
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Shipment History</legend>
+          <div class="admin-form-grid">
+            <label>Weight<input type="text" name="weight" required /></label>
+            <label>City of Departure<input type="text" name="cityOfDeparture" required /></label>
+            <label>Date of Departure<input type="date" name="dateOfDeparture" required /></label>
+            <label>Estimated Date of Arrival<input type="date" name="estimatedDateOfArrival" required /></label>
+            <label>Current Location<input type="text" name="currentLocation" required /></label>
+            <label>Destination<input type="text" name="destination" required /></label>
+            <label>Delivery Status<input type="text" name="deliveryStatus" required /></label>
+            <label>Status Level
+              <select name="statusLevel" required>
+                <option value="Ordered">Ordered</option>
+                <option value="Processing">Processing</option>
+                <option value="In Transit">In Transit</option>
+                <option value="On Hold">On Hold</option>
+                <option value="Out for Delivery">Out for Delivery</option>
+                <option value="Delivered">Delivered</option>
+              </select>
+            </label>
+            <label>Amount Paid<input type="text" name="amountPaid" required /></label>
+            <label class="full">Shipment History notes
+              <textarea name="shipmentHistory" rows="3"></textarea>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="admin-form-actions">
+          <button class="btn btn--primary" type="submit">Update shipment</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+
+    <script src="/js/admin.js"></script>
+  </body>
+</html>

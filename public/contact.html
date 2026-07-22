@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Zonei International Logistics</title>
+    <meta
+      name="description"
+      content="Contact Zonei International Logistics in New York. Request a freight quote for plane, ship, train, or truck shipping."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" href="/assets/a.jpg" type="image/jpeg" />
+  </head>
+  <body>
+    <div class="preloader" id="preloader" aria-live="polite" aria-busy="true">
+      <div class="preloader__inner">
+        <div class="preloader__spinner" aria-hidden="true"></div>
+        <img class="preloader__logo" src="/assets/a.jpg" alt="Zonei International Logistics" width="160" height="64" />
+      </div>
+    </div>
+
+    <header class="site-header site-header--solid" id="top">
+      <a class="brand" href="/index.html" aria-label="Zonei International Logistics home">
+        <img class="brand__logo" src="/assets/a.jpg" alt="Zonei International Logistics" width="168" height="52" />
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/services.html">Services</a>
+        <a href="/track.html">Track Package</a>
+        <a href="/contact.html" class="nav__cta" aria-current="page">Contact</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <main>
+      <section class="page-hero page-hero--media">
+        <img class="page-hero__bg" src="/assets/img/map.jpg" alt="" />
+        <div class="page-hero__veil"></div>
+        <div class="page-hero__content">
+          <p class="page-hero__eyebrow">Contact</p>
+          <h1>Get your package delivered</h1>
+          <p>Reach Zonei International Logistics — we’ll plan your shipment.</p>
+        </div>
+      </section>
+
+      <section class="section contact contact--visual">
+        <div class="contact__map reveal">
+          <img src="/assets/img/map.jpg" alt="Zonei New York location map" />
+        </div>
+        <div class="contact__grid">
+          <article class="reveal">
+            <h3>Location</h3>
+            <p>8th floor, 379 Hudson St<br />New York, NY 10018</p>
+          </article>
+          <article class="reveal">
+            <h3>Email</h3>
+            <p><a href="mailto:info@zoneiintl.com">info@zoneiintl.com</a></p>
+          </article>
+          <article class="reveal">
+            <h3>Website</h3>
+            <p><a href="https://zoneiintl.com" rel="noopener">zoneiintl.com</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section quote quote--page" id="quote">
+        <div class="quote__panel">
+          <div class="quote__intro">
+            <h2>Request a shipping quote</h2>
+            <p>Share origin, destination, and freight mode. A Zonei International Logistics specialist will respond.</p>
+          </div>
+          <form class="quote-form" id="quote-form" novalidate>
+            <div class="form-row">
+              <label>
+                Full name
+                <input type="text" name="name" required autocomplete="name" placeholder="Alex Morgan" />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" />
+              </label>
+            </div>
+            <div class="form-row">
+              <label>
+                Phone
+                <input type="tel" name="phone" required autocomplete="tel" placeholder="+1 555 000 0000" />
+              </label>
+              <label>
+                Origin
+                <input type="text" name="origin" required placeholder="New York, USA" />
+              </label>
+            </div>
+            <div class="form-row">
+              <label>
+                Destination
+                <input type="text" name="destination" required placeholder="London, UK" />
+              </label>
+              <fieldset class="mode-picker mode-picker--inline">
+                <legend>Freight mode</legend>
+                <label><input type="radio" name="mode" value="plane" checked /> Plane</label>
+                <label><input type="radio" name="mode" value="ship" /> Ship</label>
+                <label><input type="radio" name="mode" value="train" /> Train</label>
+                <label><input type="radio" name="mode" value="truck" /> Truck</label>
+              </fieldset>
+            </div>
+            <label>
+              Package details
+              <textarea name="details" rows="4" placeholder="Weight, dimensions, special handling…"></textarea>
+            </label>
+            <button class="btn btn--primary" type="submit">Submit quote request</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__brand">
+        <img class="footer__logo" src="/assets/a.jpg" alt="Zonei International Logistics" width="148" height="48" />
+        <div>
+          <strong>Zonei International Logistics</strong>
+          <p>International &amp; local courier. Plane · Ship · Train · Truck.</p>
+        </div>
+      </div>
+      <div class="footer__meta">
+        <p>379 Hudson St, New York, NY 10018 · info@zoneiintl.com</p>
+        <p>&copy; <span id="year"></span> Zonei International Logistics. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+  </body>
+</html>

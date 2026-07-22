@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-label="Zonei International Logistics">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2F6FED"/>
+      <stop offset="100%" stop-color="#0A1F44"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="48" r="30" fill="url(#g)"/>
+  <circle cx="40" cy="48" r="18" fill="none" stroke="#FFFFFF" stroke-width="2.5" opacity="0.95"/>
+  <path d="M28 48c0-8 5.5-14 12-14s12 6 12 14-5.5 14-12 14-12-6-12-14z" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M26 48h28M40 34v28" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+  <rect x="22" y="58" width="12" height="10" rx="1.5" fill="#E8EEF8"/>
+  <rect x="36" y="55" width="12" height="13" rx="1.5" fill="#FFFFFF"/>
+  <rect x="50" y="60" width="10" height="8" rx="1.5" fill="#D6E2F8"/>
+  <text x="88" y="58" font-family="Arial Black, Arial, sans-serif" font-size="34" font-style="italic" font-weight="800" letter-spacing="-1">
+    <tspan fill="#0A1F44">ZONEI</tspan>
+    <tspan fill="#2F6FED" dx="8">INTL</tspan>
+  </text>
+</svg>

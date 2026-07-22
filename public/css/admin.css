@@ -1,0 +1,379 @@
+.admin-body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  background:
+    radial-gradient(900px 400px at 100% 0%, rgba(47, 111, 237, 0.08), transparent 55%),
+    #eef2f8;
+  color: #0b1220;
+  font-family: "Figtree", sans-serif;
+}
+
+.admin-sidebar {
+  background: linear-gradient(180deg, #061428, #0a1f44);
+  color: #fff;
+  padding: 1.35rem 1.1rem;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+}
+
+.admin-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-bottom: 1.75rem;
+  color: #fff;
+}
+
+.admin-brand img {
+  background: #fff;
+  border-radius: 10px;
+  padding: 0.35rem 0.5rem;
+  width: auto;
+  height: 44px;
+  object-fit: contain;
+}
+
+.admin-brand span {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+.admin-sidebar nav {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.admin-sidebar a {
+  color: rgba(255, 255, 255, 0.82);
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar a[aria-current="page"] {
+  background: rgba(47, 111, 237, 0.28);
+  color: #fff;
+}
+
+.admin-main {
+  padding: 1.75rem clamp(1.1rem, 3vw, 2.25rem) 3rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.admin-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.admin-top h1 {
+  margin: 0 0 0.35rem;
+  font-family: "Syne", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  color: #0a1f44;
+}
+
+.admin-top p {
+  margin: 0;
+  color: #51607a;
+}
+
+.admin-card {
+  background: #fff;
+  border: 1px solid rgba(10, 31, 68, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(6, 20, 40, 0.07);
+  padding: 1.15rem;
+  width: 100%;
+}
+
+.admin-form.admin-card {
+  padding: clamp(1.25rem, 3vw, 1.85rem);
+  display: grid;
+  gap: 1.15rem;
+  width: 100%;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 0.9rem 0.75rem;
+  border-bottom: 1px solid rgba(10, 31, 68, 0.08);
+  vertical-align: top;
+  font-size: 0.95rem;
+}
+
+.admin-table th {
+  color: #44506a;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: #e8effc;
+  color: #1e4db7;
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.action-btn {
+  border: 1px solid rgba(10, 31, 68, 0.16);
+  background: #f7f9fc;
+  color: #0a1f44;
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.action-btn:hover {
+  background: #eaf0fa;
+}
+
+.action-btn--danger {
+  background: #fff1f0;
+  border-color: #f3b4b0;
+  color: #b42318;
+}
+
+.admin-form fieldset {
+  border: 1px solid rgba(10, 31, 68, 0.1);
+  margin: 0;
+  padding: 1.15rem 1.15rem 1.25rem;
+  border-radius: 14px;
+  background: #f8fafc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.admin-form legend {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  color: #0a1f44;
+  padding: 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.admin-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #44506a;
+}
+
+.admin-form label.full {
+  grid-column: 1 / -1;
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+  width: 100%;
+  border: 1px solid rgba(10, 31, 68, 0.16);
+  border-radius: 12px;
+  padding: 0.85rem 0.95rem;
+  font: inherit;
+  font-weight: 500;
+  background: #fff;
+  color: #0b1220;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-form input:focus,
+.admin-form select:focus,
+.admin-form textarea:focus {
+  border-color: #2f6fed;
+  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.15);
+}
+
+.admin-form textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.admin-form input[readonly] {
+  background: #e8eef8;
+  color: #334155;
+  cursor: not-allowed;
+  border-style: dashed;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.admin-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(10, 31, 68, 0.08);
+}
+
+.admin-form-actions .form-status {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.admin-form-actions .form-status.is-success {
+  color: #0f766e;
+}
+
+.admin-form-actions .form-status.is-error {
+  color: #b42318;
+}
+
+.admin-back {
+  color: #0a1f44 !important;
+  border-color: rgba(10, 31, 68, 0.25) !important;
+  background: #fff !important;
+}
+
+.admin-back:hover {
+  background: #f3f7fd !important;
+}
+
+.receipt-body {
+  display: block;
+  background: #eef2f8;
+  padding: 1.25rem;
+}
+
+.receipt-toolbar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.receipt {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2rem;
+  border: 1px solid rgba(10, 31, 68, 0.12);
+  border-radius: 14px;
+}
+
+.receipt__header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #0a1f44;
+  padding-bottom: 1rem;
+}
+
+.receipt__header img {
+  background: #fff;
+  padding: 0.2rem;
+}
+
+.receipt__header h1 {
+  margin: 0;
+  font-family: "Syne", sans-serif;
+  color: #0a1f44;
+}
+
+.receipt__code {
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+}
+
+.receipt section {
+  margin-bottom: 1.15rem;
+}
+
+.receipt h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: #1e4db7;
+}
+
+.receipt p {
+  margin: 0.25rem 0;
+  color: #334155;
+}
+
+.receipt__footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(10, 31, 68, 0.12);
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .admin-body {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    position: relative;
+    height: auto;
+    min-height: auto;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .receipt-body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .receipt {
+    border: 0;
+    max-width: none;
+    border-radius: 0;
+  }
+}

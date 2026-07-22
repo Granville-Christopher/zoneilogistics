@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zonei International Logistics — Home</title>
+    <meta
+      name="description"
+      content="Zonei International Logistics provides international and local courier service solutions worldwide. Track your package or request freight shipping."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" href="/assets/a.jpg" type="image/jpeg" />
+  </head>
+  <body>
+    <div class="preloader" id="preloader" aria-live="polite" aria-busy="true">
+      <div class="preloader__inner">
+        <div class="preloader__spinner" aria-hidden="true"></div>
+        <img class="preloader__logo" src="/assets/a.jpg" alt="Zonei International Logistics" width="160" height="64" />
+      </div>
+    </div>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="/index.html" aria-label="Zonei International Logistics home">
+        <img class="brand__logo" src="/assets/a.jpg" alt="Zonei International Logistics" width="168" height="52" />
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html" aria-current="page">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/services.html">Services</a>
+        <a href="/track.html">Track Package</a>
+        <a href="/contact.html" class="nav__cta">Contact</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Hero">
+        <div class="hero__media" aria-hidden="true">
+          <img
+            class="hero__image"
+            src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=2400&q=80"
+            alt=""
+            width="2400"
+            height="1600"
+          />
+          <div class="hero__veil"></div>
+        </div>
+        <div class="hero__content">
+          <p class="hero__brand">Zonei International Logistics</p>
+          <h1 class="hero__title">International and local courier solutions across the world.</h1>
+          <p class="hero__lede">
+            Zonei International Logistics ships with care — freight by plane, ship, train, and truck.
+          </p>
+          <form class="hero-track js-track-form" data-redirect="true" novalidate>
+            <label class="sr-only" for="hero-track-code">Tracking code</label>
+            <input
+              id="hero-track-code"
+              type="text"
+              name="code"
+              required
+              autocomplete="off"
+              placeholder="enter code eg: ZI-2653238813"
+            />
+            <button class="btn btn--primary" type="submit">Track</button>
+            <p class="form-status hero-track__status js-track-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section split-feature">
+        <div class="split-feature__media reveal">
+          <img src="/assets/img/pp.webp" alt="Zonei courier delivery team" width="1200" height="800" />
+        </div>
+        <div class="split-feature__copy">
+          <h2>Courier solutions customers trust</h2>
+          <p>
+            Fast delivery. Secured service. Worldwide reach. Zonei International Logistics moves packages locally across the
+            United States and internationally — without loss.
+          </p>
+          <ul class="check-list">
+            <li>Fast Delivery</li>
+            <li>Secured Service</li>
+            <li>World Wide</li>
+          </ul>
+          <a class="btn btn--primary" href="/about.html">About Zonei International Logistics</a>
+        </div>
+      </section>
+
+      <section class="section modes">
+        <div class="section__intro">
+          <h2>We are associated with the best</h2>
+          <p>Freight lanes built for every cargo type and destination.</p>
+        </div>
+        <ul class="service-grid">
+          <li class="service-tile reveal">
+            <img src="/assets/img/p.webp" alt="Freight plane" width="800" height="560" />
+            <div>
+              <h3>Freight Plane</h3>
+              <p>Priority air freight across continents.</p>
+            </div>
+          </li>
+          <li class="service-tile reveal">
+            <img src="/assets/img/ship.jpg" alt="Freight ship" width="800" height="560" />
+            <div>
+              <h3>Freight Ship</h3>
+              <p>Ocean lanes for containers and bulk cargo.</p>
+            </div>
+          </li>
+          <li class="service-tile reveal">
+            <img src="/assets/img/ttt.png" alt="Freight train" width="800" height="560" />
+            <div>
+              <h3>Freight Train</h3>
+              <p>Rail freight for heavy inland corridors.</p>
+            </div>
+          </li>
+          <li class="service-tile reveal">
+            <img src="/assets/img/b.png" alt="Freight truck" width="800" height="560" />
+            <div>
+              <h3>Freight Truck</h3>
+              <p>Ground freight and last-mile delivery.</p>
+            </div>
+          </li>
+        </ul>
+        <p class="section__link"><a class="text-link" href="/services.html">View all services →</a></p>
+      </section>
+
+      <section class="section track track--visual" id="track-home">
+        <div class="track__media reveal" aria-hidden="true">
+          <img src="/assets/img/tracker.jpg" alt="" width="1200" height="800" />
+        </div>
+        <div class="track__panel">
+          <div class="track__intro">
+            <h2>Track your package</h2>
+            <p>
+              Enter your tracking code to open the full package page and see live status,
+              route, and timeline.
+            </p>
+          </div>
+          <form class="track-form js-track-form" data-redirect="true" novalidate>
+            <label>
+              Tracking code
+              <input type="text" name="code" required autocomplete="off" placeholder="enter code eg: ZI-2653238813" />
+            </label>
+            <button class="btn btn--primary" type="submit">Track Package</button>
+            <p class="form-status js-track-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section stats-band">
+        <div class="stats-band__intro">
+          <h2>Why we are leading</h2>
+          <p>Nearly 20 years of success with top professionals behind every shipment.</p>
+        </div>
+        <ul class="stats-band__grid">
+          <li class="reveal"><strong>Packages</strong><span>Delivered securely worldwide</span></li>
+          <li class="reveal"><strong>52,454 km</strong><span>Covered per year</span></li>
+          <li class="reveal"><strong>3,246</strong><span>Projects completed</span></li>
+          <li class="reveal"><strong>1,500+</strong><span>Active clients</span></li>
+        </ul>
+      </section>
+
+      <section class="section cta-band cta-band--photo">
+        <img class="cta-band__bg" src="/assets/img/map.jpg" alt="" />
+        <div class="cta-band__veil"></div>
+        <div class="cta-band__copy">
+          <h2>Ready to ship with Zonei International Logistics?</h2>
+          <p>Contact us and get your package delivered today.</p>
+        </div>
+        <a class="btn btn--primary" href="/contact.html">Contact &amp; quote</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__brand">
+        <img class="footer__logo" src="/assets/a.jpg" alt="Zonei International Logistics" width="148" height="48" />
+        <div>
+          <strong>Zonei International Logistics</strong>
+          <p>International &amp; local courier. Plane · Ship · Train · Truck.</p>
+        </div>
+      </div>
+      <div class="footer__meta">
+        <p>379 Hudson St, New York, NY 10018 · info@zoneiintl.com</p>
+        <p>&copy; <span id="year"></span> Zonei International Logistics. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+  </body>
+</html>
